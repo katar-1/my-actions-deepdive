@@ -27,4 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
-      - run: echo "Deploying to test environment"
+      - uses: actions/checkout@v7
+      - id: deploy
+        uses: ./.github/actions/deploy
+        with:
+          environment: test
+      - run: echo "Deployed to ${{ steps.deploy.outputs.url }}"

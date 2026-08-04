@@ -1,0 +1,16 @@
+name: Deploy
+description: Deploys the application to an environment
+inputs:
+  environment:
+    description: The environment to deploy to
+    required: true
+outputs:
+  url:
+    description: The URL of the deployed environment
+    value: ${{ steps.set-url.outputs.url }}
+runs:
+  using: composite
+  steps:
+    - id: set-url
+      shell: bash
+      run: echo "url=https://${{ inputs.environment }}.example.com" >> "$GITHUB_OUTPUT"
