@@ -53,7 +53,7 @@ Instead of working in the browser, you can connect your locally installed VS Cod
    docker run hello-world
    gh auth status
    ```
-6. Note that any extensions installed while connected (e.g. **GitHub Actions**, **Docker**) install into the remote Codespace, not your local machine - they'll be there next time you connect from anywhere.
+6. Note that any extensions installed while connected (e.g. **GitHub Actions**, **Docker**) install into the remote Codespace, not yo±ur local machine - they'll be there next time you connect from anywhere.
 
 ## Checkpoint
 
