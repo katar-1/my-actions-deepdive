@@ -1,0 +1,30 @@
+name: GitHub Actions Demo
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      actor: ${{ steps.info.outputs.actor }}
+      event_name: ${{ steps.info.outputs.event_name }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: info
+        run: |
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "actor=${{ github.actor }}" >> "$GITHUB_OUTPUT"
+          echo "event_name=${{ github.event_name }}" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - run: echo "Deploying to test environment"
